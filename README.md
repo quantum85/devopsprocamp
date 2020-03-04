@@ -1,9 +1,14 @@
 # devopsprocamp
 ## GL DevOps ProCamp  Entry Task.
 
-#### __metrics__ is a simple command-line tool which is intended to output basic OS CPU and Memory utilization to console
-
+### Metrics is a simple command-line tool which is intended to output basic OS CPU and Memory utilization information to console.
+__NOTE__ Required python3 and psutil 
 
 ```shell
-$ docker run -it --pid=host --rm quantum85/dev-ops-training:lates metrics cpu --pid=host
+pip3 install psutil
+```
+
+### USAGE
+```shell
+./metrics [mem|cpu]
 ```
