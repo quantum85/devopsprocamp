@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """Simple python script which is intended to check system CPU and MEMORY allocation"""
 
 import sys
