@@ -1,30 +1,49 @@
 #!/usr/bin/env python3
+import os,sys
 from psutil import cpu_times_percent,virtual_memory,swap_memory
-## CPU usage in %
-cpu_load = cpu_times_percent(interval=1, percpu=False)
-print("system.cpu.idle {}".format(cpu_load.idle))
-print("system.cpu.user {}".format(cpu_load.user))
-print("system.cpu.guest {}".format(cpu_load.guest))
-print("system.cpu.iowait {}".format(cpu_load.iowait))
-print("system.cpu.stolen {}".format(cpu_load.steal))
-print("system.cpu.system {}".format(cpu_load.system))
 
-## Memory usage
-rom_usage = virtual_memory()
-print("virtual total {}".format(rom_usage.total))
-print("virtual used {}".format(rom_usage.used))
-print("virtual free {}".format(rom_usage.free))
-print("virtual shared {}".format(rom_usage.shared))
-swap_usage =  swap_memory()
-print("swap total {}".format(swap_usage.total))
-print("swap used {}".format(swap_usage.used))
-print("swap free {}".format(swap_usage.free))
+# Outputs script usage message 
+def usage():
+    print("Usage: ./{} [cpu | mem]".format(os.path.basename(__file__)))
+    print("Example: ./{} cpu".format(os.path.basename(__file__)))
+    sys.exit(2)
 
-#svmem(total=8230641664, available=3932508160, percent=52.2, used=3483267072, free=1834364928, active=4161777664, inactive=1376616448, buffers=173326336, cached=2739683328, shared=499970048, slab=280629248)
-#virtual total 16712351744
-#virtual used 9190146048
-#virtual free 1391624192
-#virtual shared 287655116
-#swap total 0
-#swap used 0
-#swap free 0
+# CPU usage in %
+def sys_cpu_util():
+    cpu_load = cpu_times_percent(interval=1, percpu=False)
+    print("system.cpu.idle {}".format(cpu_load.idle))
+    print("system.cpu.user {}".format(cpu_load.user))
+    print("system.cpu.guest {}".format(cpu_load.guest))
+    print("system.cpu.iowait {}".format(cpu_load.iowait))
+    print("system.cpu.stolen {}".format(cpu_load.steal))
+    print("system.cpu.system {}".format(cpu_load.system))
+    sys.exit(0)
+
+# Memory usage
+def sys_mem_util():
+    rom_usage = virtual_memory()
+    swap_usage =  swap_memory()
+    print("virtual total {}".format(rom_usage.total))
+    print("virtual used {}".format(rom_usage.used))
+    print("virtual free {}".format(rom_usage.free))
+    print("virtual shared {}".format(rom_usage.shared))
+    print("swap total {}".format(swap_usage.total))
+    print("swap used {}".format(swap_usage.used))
+    print("swap free {}".format(swap_usage.free))
+    sys.exit(0)
+
+# Inspects user input
+## No arguments given -> exit
+try:
+    arg = sys.argv[1]
+except IndexError:
+    usage()
+# The main logic
+if arg != 'cpu' and arg != 'mem' or len(sys.argv) != 2:
+    usage()
+elif arg == 'cpu':
+    sys_cpu_util()
+elif arg == 'mem':
+    sys_mem_util()
+else:
+    usage()
