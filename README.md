@@ -30,6 +30,10 @@ system.cpu.guest 0.0
 system.cpu.iowait 1.0
 system.cpu.stolen 0.0
 system.cpu.system 0.0
----
 ```
+
+## Docker container implementation
+
+Please also consider using the utility as a Docker containerised application.
+
 
