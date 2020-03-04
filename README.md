@@ -48,3 +48,16 @@ docker pull quantum85/dev-ops-training
 docker run -it --rm quantum85/dev-ops-training metrics mem
 docker run -it --rm quantum85/dev-ops-training metrics cpu
 ```
+3. Run the command inside the container.
+
+```shell
+docker run -it  --rm quantum85/dev-ops-training /bin/sh
+/ # metrics mem
+virtual total 3144880128
+virtual used 326578176
+virtual free 273518592
+virtual shared 1462272
+swap total 495411200
+swap used 10850304
+swap free 484560896
+```
