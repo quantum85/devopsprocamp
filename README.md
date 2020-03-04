@@ -7,8 +7,8 @@
 ```shell
 pip3 install psutil
 ```
-
-### USAGE
+## USAGE
 ```shell
 ./metrics [mem|cpu]
 ```
+
